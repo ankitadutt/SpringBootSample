@@ -26,8 +26,9 @@ public class Qubit {
 	@Column(name="Id")
 	private Integer id;
 	
-	@Column(name="Name")
-	private String name;
+	
+	@Column(name="QubitId")
+	private Integer qubitid;
 	
 	@Column(name="Frequency")
 	private Double freq;
@@ -59,17 +60,13 @@ public class Qubit {
 	public Qubit(){
 	}
 	
-	public Qubit(String name){
-		super();
-		this.name = name;
-	}
-	
 	public Qubit(int id){
 		this.id = id;
 	}
 	
-	public Qubit(String name, Device device){
-	        this.name = name;
+	public Qubit(int qubitId, Device device){
+			super();
+	        this.qubitid = qubitId;
 	        this.device = device;
 	    }
 
@@ -93,13 +90,6 @@ public class Qubit {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public Double getFreq() {
 		return freq;
@@ -142,13 +132,19 @@ public class Qubit {
 		this.validto = validto;
 	}
 
-	@Override
-	public String toString() {
-		return "Qubit [id=" + id + ", name=" + name + ", freq=" + freq + ", coheranceConstant1=" + coheranceConstant1
-				+ ", coheranceConstant2=" + coheranceConstant2 + ", validfrom=" + validfrom + ", validto=" + validto
-				+ ", gates=" + gates + ", device=" + device + "]";
+	public Integer getQubitid() {
+		return qubitid;
 	}
 
+	public void setQubitid(Integer qubitid) {
+		this.qubitid = qubitid;
+	}
 
+	@Override
+	public String toString() {
+		return "Qubit [id=" + id + ", qubitid=" + qubitid + ", freq=" + freq + ", coheranceConstant1="
+				+ coheranceConstant1 + ", coheranceConstant2=" + coheranceConstant2 + ", validfrom=" + validfrom
+				+ ", validto=" + validto + ", gates=" + gates + ", device=" + device + "]";
+	}
 
 }

@@ -26,13 +26,13 @@ public class QubitController {
 
 	 @RequestMapping("/createqubit")
 	  @ResponseBody
-	  public String createQubit(String name, int deviceId) {
+	  public String createQubit(int qubitid, String devicename) {
 		 Qubit qubit = null;
 		 Device device = null;
 	    try {
-	    	device = new Device(deviceId);
+	    	device = new Device(devicename);
 	    	
-	    	qubit = new Qubit(name, device);
+	    	qubit = new Qubit(qubitid, device);
 	    	qubitDao.save(qubit);
 	    }
 	    catch (Exception ex) {
@@ -48,7 +48,6 @@ public class QubitController {
 	    try {
 	    	qubit = new Qubit(id); 
 	    	qubitDao.delete(qubit);
-	    	//if there exist gates related to the qubit, the qubit cannot be deleted
 	    }
 	    catch (Exception ex) {
 	      return "Error deleting the qubit: " + ex.toString();
@@ -58,11 +57,11 @@ public class QubitController {
 	  
 	  @RequestMapping("/updatequbit")
 	  @ResponseBody
-	  public String updateQubit(int id, Double freq, String name, int cocon1, int cocon2, Date from, Date to ) {
+	  public String updateQubit(int id, Double freq, int qubitid, int cocon1, int cocon2, Date from, Date to ) {
 	    try {
 	    	Qubit qubit = qubitDao.findOne(id);
 	    	qubit.setFreq(freq);
-	    	qubit.setName(name);
+	    	qubit.setQubitid(qubitid);
 	    	qubit.setCoheranceConstant1(cocon1);
 	    	qubit.setCoheranceConstant2(cocon2);
 	    	qubit.setValidfrom(from);
@@ -91,10 +90,10 @@ public class QubitController {
 	  
 	  @RequestMapping("/getqubitsfordevice")
 	  @ResponseBody
-	  public String getQubits(int device){
+	  public String getQubits(String device){
 		  List<Qubit> qubitList = null;
 		  try{
-			 qubitList = qubitDao.findByDeviceId(device);
+			 qubitList = qubitDao.findByDeviceName(device);
 		  }
 		  catch(Exception ex){
 			  return "Qubit not found: exception: " + ex.toString();

@@ -17,36 +17,26 @@ import javax.persistence.Table;
 @Table(name="Device")
 public class Device {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Id")
-	private int id;
 	
+	@Id
 	@Column(name="Name")
 	private String name;
 	
 	@Column(name="Description")
 	private String desc;
 	
-
-	public Device(int id){
-		this.id = id;
-	}
 	
 	public Device(){}
+	
+	public Device(String name){
+		super();
+		this.name = name;
+	}
 
 	public Device(String name, String desc) {
 		super();
 		this.name = name;
 		this.desc = desc;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -77,7 +67,7 @@ public class Device {
 
 	@Override
 	public String toString() {
-		return "Device [id=" + id + ", name=" + name + ", desc=" + desc + "]";
+		return "Device [name=" + name + ", desc=" + desc + "]";
 	}
 
 }
