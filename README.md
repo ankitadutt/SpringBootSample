@@ -6,7 +6,7 @@ The code written here is for requirements as provided in description section bel
 - Maven
 - JDK 8
 
-### Implement a software library that allows you to create, read, update and delete (CRUD) the example objects in a relational (SQL) database.
+Implement a software library that allows you to create, read, update and delete (CRUD) the example objects in a relational (SQL) database.
 This library should have a programming interface (API).
 The objects form a simple hierarchy of one-to-many relationships: 
 
